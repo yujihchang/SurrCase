@@ -1,1 +1,4 @@
-export(function_name)
+export(mediation)
+importFrom(probit)
+export(IV)
+importFrom(probit_W)
