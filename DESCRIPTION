@@ -6,5 +6,7 @@ Author: Jih-Chang Yu
 Maintainer: Yu, Jih-Chang <jcyu@gm.ntpu.edu.tw>
 Description: This package includes mediation analysis and instrumental variable analysis for a case-cohort study.
 License: What license it uses
-Imports: roxygen2, ggplot2, dplyr
+Imports: probit, probit_W
+  
+
 RoxygenNote: 7.3.2
