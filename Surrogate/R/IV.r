@@ -6,7 +6,7 @@
 
 #rm(list=ls(all=TRUE))
 
-source("probitW.r")
+#source("probitW.r")
 #data=IV_data(n=2000,a0=0.5,az=1,au=1,sm=2^0.5,b0=0,bm=1,bu=1,st=1,pxi=0.2,cr=0.325)
 
 lv=c( -0.0118, -0.0100,  0.0068,  0.5771,  0.6140,  0.6129,  1, 47,  1)
