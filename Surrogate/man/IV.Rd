@@ -13,39 +13,17 @@ delta.IV: estimated bz/az (page 7)
 delta.IV.v: estimated sd. of delta.IV
 }
 \examples{
-
 url <- "https://github.com/yujihchang/SurrCase/raw/main/Surrogate/Data/Wild%20Type%20Live%20Virus.RData"
 destfile <- "Wild Type Live Virus.RData"
 if (!file.exists(destfile)) {
   download.file(url, destfile, mode = "wb")
 }
-
-
 load("Wild Type Live Virus.RData")
-
 ee = runif(30000, 0, 0.5)
 data[, 1] = data[, 1] + ee  # 分開 tie
 colnames(data)[1:5] = c("Ts", "D", "xi", "Z", "M")
-
 ppt = seq(0, max(data$Ts[data$D == 1]), by = 0.01)
-
-source("mediation.r")
-ans_med = mediation(ppt, data, int = "FALSE", PX = c(12, 13, 14), setting = "median")
-
-
-plot(ppt, ans_med$omega.IE, col = 2, type = "l", ylim = c(-0.03, 0.03))
-points(ppt, ans_med$omega.IE + 1.96 * ans_med$omega.IE.v, col = 2)
-points(ppt, ans_med$omega.IE - 1.96 * ans_med$omega.IE.v, col = 2)
-points(ppt, ans_med$omega.DE - 1.96 * ans_med$omega.DE.v, col = 1)
-points(ppt, ans_med$omega.DE + 1.96 * ans_med$omega.DE.v, col = 1)
-points(ppt, ans_med$omega.DE, col = 1)
-abline(h = 0, col = 3)
-
-
-source("IV.r")
 ans_IV = IV(ppt, data, m0 = 0.5, m1 = 2.5, SS = 2.25^0.5, tol = 0.001, PX = c(12, 13, 14), setting = "median")
-
-
 plot(ppt, ans_med$WIE, type = "l")
 points(ppt, ans_med$WIE + 1.96 * ans_med$WIE.v)
 points(ppt, ans_med$WIE - 1.96 * ans_med$WIE.v)
