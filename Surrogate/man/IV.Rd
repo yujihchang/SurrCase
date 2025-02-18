@@ -25,8 +25,8 @@ colnames(data)[1:5] = c("Ts","D","xi","Z","M")
 ppt=seq(0,max(data$Ts[data$D==1]),by=0.01) 
 
 ans_IV=IV(ppt,data,m0=0.5,m1=2.5,SS=2.25^0.5,tol=0.001,PX=c(12,13,14),setting="median")
- plot(ppt,ans_med$WIE,type="l)
- points(ppt,ans_med$WIE+1.96*ans_med$WIE.v)
- points(ppt,ans_med$WIE-1.96*ans_med$WIE.v)
+ plot(ppt,ans_IV$WIE,type="l")
+ points(ppt,ans_IV$WIE+1.96*ans_IV$WIE.v)
+ points(ppt,ans_IV$WIE-1.96*ans_IV$WIE.v)
  abline(h=0,col=2)
 }
