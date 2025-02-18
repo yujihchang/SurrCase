@@ -9,14 +9,9 @@
 source("probit_W.r")
 #data=IV_data(n=2000,a0=0.5,az=1,au=1,sm=2^0.5,b0=0,bm=1,bu=1,st=1,pxi=0.2,cr=0.325)
 
-
-
 lv=c( -0.0118, -0.0100,  0.0068,  0.5771,  0.6140,  0.6129,  1, 47,  1)
 
 IV=function(ppt,data,m0=0,m1=1,PX=NULL,tol=0.005,SS=1,mu=0,bin=0.5,setting,level=lv){
-
-#m0=0;m1=1;tol=0.005;SS=1.25^0.5;bin=0.00001;PX=c(2,4,12,13,14);mu=0
-
 
 colnames(data)[1:5] = c("Ts","D","xi","Z","M")
 Data=data
@@ -37,7 +32,6 @@ pxi=exp(log_pxi)/(exp(log_pxi)+1)
 
 xdim=NCOL(data)-5
 if(xdim>0)X=as.matrix(data[,-(1:5)]) else X=NULL
-
 
 pi=D+(1-D)*xi/pxi
 sub_cohort_i=which(pi>0)
@@ -60,19 +54,16 @@ if(xdim==1) X=as.matrix(X[-(1:(dd-1))])
 pi=pi[-(1:(dd-1))]
 }
 
-
 ##################################################################################
 if(xdim>0) regM=lm(M~X+Z,SCH,weights=pi) else regM=lm(M~Z,SCH,weights=pi)
 #dim(SCH)
 nsch=dim(SCH)[1]
 XZ=cbind(rep(1,nsch),X,SCH$Z)
 
-#solve(t(XZ)%*%diag(pi)%*%XZ)%*%t(XZ)%*%(SCH$M*pi)
-
 
 
 if(xdim>0) XX=cbind(SCH$Z,X) else XX=as.matrix(SCH$Z)
-pb=tran.npmle(Y=SCH$Ts,D=SCH$D,X=XX,r=-1,p.sigma=SS,MU=mu,weight=pi,TOL=tol)
+pb=tran.npmle_W(Y=SCH$Ts,D=SCH$D,X=XX,r=-1,p.sigma=SS,MU=mu,weight=pi,TOL=tol)
 
 #plot(pb$jump,pb$bas,ylim=c(0,max(SCH$Ts)))
 
@@ -123,7 +114,7 @@ sm=(sum(pi*( ( SCH$M -apply(XZ_BB,2,sum) ))^2)/sum(pi))
 #schix=sort(sch$Ts,index.return=TRUE)$ix
 #xx=xx[schix,]
 #st=sd(log(LA)-apply(xx*(-1)*pb$coef,1,sum))
-# ³oÃä¬O¬°¤F¦ô­p st, ¦ı¥L¬O¤wª¾©Ò¥H¤£¥Î¦ô­p
+# é€™é‚Šæ˜¯ç‚ºäº†ä¼°è¨ˆ st, ä½†ä»–æ˜¯å·²çŸ¥æ‰€ä»¥ä¸ç”¨ä¼°è¨ˆ
 
 
 
