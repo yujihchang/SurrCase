@@ -27,6 +27,27 @@ regM: the estimated regression of model (2) in page 5
 coefP: the estimated regression of model (1) in page 5
 }
 \examples{
-mediation()
+url <- "https://github.com/yujihchang/SurrCase/raw/main/Surrogate/Data/Wild%20Type%20Live%20Virus.RData"
+destfile <- "Wild Type Live Virus.RData"
+if (!file.exists(destfile)) {
+  download.file(url, destfile, mode = "wb")
+}
+load("Wild Type Live Virus.RData")
+
+ee = runif(30000, 0, 0.5)
+data[, 1] = data[, 1] + ee  # 分開 tie
+colnames(data)[1:5] = c("Ts", "D", "xi", "Z", "M")
+ppt = seq(0, max(data$Ts[data$D == 1]), by = 0.01)
+
+ans_med = mediation(ppt, data, int = "FALSE", PX = c(12, 13, 14), setting = "median")
+
+plot(ppt, ans_med$omega.IE, col = 2, type = "l", ylim = c(-0.03, 0.03))
+points(ppt, ans_med$omega.IE + 1.96 * ans_med$omega.IE.v, col = 2)
+points(ppt, ans_med$omega.IE - 1.96 * ans_med$omega.IE.v, col = 2)
+points(ppt, ans_med$omega.DE - 1.96 * ans_med$omega.DE.v, col = 1)
+points(ppt, ans_med$omega.DE + 1.96 * ans_med$omega.DE.v, col = 1)
+points(ppt, ans_med$omega.DE, col = 1)
+abline(h = 0, col = 3)
+
 }
 \keyword{mediation}
