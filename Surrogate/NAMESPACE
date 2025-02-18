@@ -1,7 +1,5 @@
 export(mediation)
 export(IV)
-export(probit)
-export(probitW)
 import(survival)
 import(MASS)
 import(compiler)
