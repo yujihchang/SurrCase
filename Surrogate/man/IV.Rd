@@ -6,20 +6,22 @@
 IV(ppt, data, m0=0, m1=1, PX=NULL, tol=0.005, SS=1, mu=0, bin=0.5, setting=NULL, level=NULL)
 }
 \arguments{
-\item{data}{data.frame(X1,X2,D,Z)}
+\item{data}{data.frame(Ts,D,xi,Z,M), with remaining columns as covariates}
 
-\item{int_theta}{initial value of theta for iteration, nonnegative values vector of length 2}
+\item{ppt}{A vector of time points of interest for the x-axis}
 
-\item{tol}{maximum tolerance of change during the iteration}
+\item{setting}{Maximum tolerance of change during the iteration}
 
-\item{step}{maximum  number of the iteration}
+\item{steting}{Optional: "median", "mean", or "level"}
 
-\item{interpolation}{time can be vector or scalar}
+\item{level}{When "setting" is set to "level", specify a vector of the same length as the covariates}
 }
 \description{
 Estimating the direct and indirect of the frailty model
 }
 \examples{
+data(expdata)
+data=expdata
 ee=runif(30000,0,0.5);data[,1]=data[,1]+ee# separating the ties
 colnames(data)[1:5] = c("Ts","D","xi","Z","M")
 ppt=seq(0,max(data$Ts[data$D==1]),by=0.01) 
