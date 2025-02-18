@@ -1,6 +1,4 @@
-library(compiler)
-library(survival)
-library(MASS)
+
 ########################################################################################
 #This is the package for calculating the npmle without considering the                    
 #left truncation under the transformation model.
