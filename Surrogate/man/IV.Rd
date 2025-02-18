@@ -15,4 +15,4 @@ delta.IV.v: estimated sd. of delta.IV
 \examples{
 IV()
 }
-\keyword{Frailty.DEIE}
+\keyword{IV}
