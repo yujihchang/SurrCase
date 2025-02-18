@@ -19,7 +19,7 @@
 #coefP: the estimated regression of model (1) in page 5
 
 
-source("probit.r")
+#source("probit.r")
 
 
 lv=c( -0.0118, -0.0100,  0.0068,  0.5771,  0.6140,  0.6129,  1, 47,  1)
