@@ -1,6 +1,3 @@
-library(compiler)
-library(survival)
-library(MASS)
 ########################################################################################
 #This is the package for calculating the npmle without considering the                    
 #left truncation under the transformation model.
@@ -82,7 +79,7 @@ R=cumsum(dR)
 
 ###########################  transformation function G ##################################
 ##
-##¦pªG­n¼W¥[¤£¦Pªº transformations ¥i¦b³o¶ô²Î­×§ï¡C
+##å¦‚æœè¦å¢åŠ ä¸åŒçš„ transformations å¯åœ¨é€™å¡Šçµ±ä¿®æ”¹ã€‚
 ##
 #--------------------------------------------------------------------------------------- 
 # LA is cumulative based-line
