@@ -4,29 +4,40 @@
 \alias{IV}
 \title{IV analysis using the transformation probit model under the case-cohort study}
 \usage{
-IV(ppt,data,m0=0,m1=1,PX=NULL,tol=0.005,SS=1,mu=0,bin=0.5,setting,level=lv)
+IV(ppt, data, m0 = 0, m1 = 1, PX = NULL, tol = 0.005, SS = 1, mu = 0, bin = 0.5, setting, level = lv)
 }
 \description{
-WIE: the point-wise estimated effect obtained from IV analyses through the W_IE() function (page 7)
-WIE.v: the point-wise estimated sd of WIE
-delta.IV: estimated bz/az (page 7)
-delta.IV.v: estimated sd. of delta.IV
+WIE: The point-wise estimated effect obtained from IV analyses through the \code{W_IE()} function. \cr
+WIE.v: The point-wise estimated standard deviation of WIE. \cr
+delta.IV: Estimated ratio \(\frac{b_z}{a_z}\). \cr
+delta.IV.v: Estimated standard deviation of \code{delta.IV}.
 }
 \examples{
+# Download and load the dataset
 url <- "https://github.com/yujihchang/SurrCase/raw/main/Surrogate/Data/Wild%20Type%20Live%20Virus.RData"
 destfile <- "Wild Type Live Virus.RData"
 if (!file.exists(destfile)) {
   download.file(url, destfile, mode = "wb")
 }
 load("Wild Type Live Virus.RData")
+
+# Add random noise to separate ties
 ee = runif(30000, 0, 0.5)
-data[, 1] = data[, 1] + ee  # 分開 tie
+data[, 1] = data[, 1] + ee  # Separate ties
+
+# Rename columns for clarity
 colnames(data)[1:5] = c("Ts", "D", "xi", "Z", "M")
+
+# Define ppt sequence
 ppt = seq(0, max(data$Ts[data$D == 1]), by = 0.01)
+
+# Perform IV analysis
 ans_IV = IV(ppt, data, m0 = 0.5, m1 = 2.5, SS = 2.25^0.5, tol = 0.001, PX = c(12, 13, 14), setting = "median")
-plot(ppt, ans_med$WIE, type = "l")
-points(ppt, ans_med$WIE + 1.96 * ans_med$WIE.v)
-points(ppt, ans_med$WIE - 1.96 * ans_med$WIE.v)
-abline(h = 0, col = 2)
+
+# Plot results
+plot(ppt, ans_IV$WIE, type = "l", main = "IV Analysis Results", xlab = "ppt", ylab = "WIE")
+points(ppt, ans_IV$WIE + 1.96 * ans_IV$WIE.v, col = "blue")  # Upper bound
+points(ppt, ans_IV$WIE - 1.96 * ans_IV$WIE.v, col = "blue")  # Lower bound
+abline(h = 0, col = 2)  # Add a horizontal line at y = 0
 }
 \keyword{IV}
