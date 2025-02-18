@@ -21,14 +21,13 @@ IV(ppt,data,m0=0,m1=1,PX=NULL,tol=0.005,SS=1,mu=0,bin=0.5,setting,level=lv)
 Estimating the direct and indirect of the frailty model
 }
 \examples{
-data=meta.gen(500,theta_0=0.5,theta_1=0.5,L1=0.5,L2=0.5,L3=1,b01=1,b02=0,b03=0,cc=2,dd="uniform")
-P.time=seq(0,1,by=0.01)
-ans=Frailty(data,P.time,int_theta=c(0.5,0.5),tol=0.01,step=50)
-plot(P.time,ans$DE,type="l",ylim=c(-0.5,0.5))
-points(P.time,ans$DE+ans$DE_sd,type="l",ylim=c(-0.5,0.5))
-points(P.time,ans$DE-ans$DE_sd,type="l",ylim=c(-0.5,0.5))
-points(P.time,ans$IE,type="l",ylim=c(-0.5,0.5),col=2)
-points(P.time,ans$IE+ans$IE_sd,type="l",ylim=c(-0.5,0.5),col=2)
-points(P.time,ans$IE-ans$IE_sd,type="l",ylim=c(-0.5,0.5),col=2)
-legend(0,0.45,c("direct effect","indirect effect"),col=1:2,lty=1)
+ee=runif(30000,0,0.5);data[,1]=data[,1]+ee# separating the ties
+colnames(data)[1:5] = c("Ts","D","xi","Z","M")
+ppt=seq(0,max(data$Ts[data$D==1]),by=0.01) 
+
+ans_IV=IV(ppt,data,m0=0.5,m1=2.5,SS=2.25^0.5,tol=0.001,PX=c(12,13,14),setting="median")
+ plot(ppt,ans_med$WIE,type="l)
+ points(ppt,ans_med$WIE+1.96*ans_med$WIE.v)
+ points(ppt,ans_med$WIE-1.96*ans_med$WIE.v)
+ abline(h=0,col=2)
 }
