@@ -1,7 +1,7 @@
 
-\name{IV}
-\alias{IV}
-\title{IV Analysis Using the Transformation Probit Model in Case-Cohort Studie}
+\name{mediation}
+\alias{mediation}
+\title{mediation Analysis Using the Transformation Probit Model in Case-Cohort Studie}
 \usage{
 IV(ppt, data, m0=0, m1=1, PX=NULL, tol=0.005, SS=1, mu=0, bin=0.5, setting=NULL, level=NULL)
 }
@@ -24,9 +24,15 @@ ee=runif(30000,0,0.5);data[,1]=data[,1]+ee# separating the ties
 colnames(data)[1:5] = c("Ts","D","xi","Z","M")
 ppt=seq(0,max(data$Ts[data$D==1]),by=0.01) 
 
-ans_IV=IV(ppt,data,m0=0.5,m1=2.5,SS=2.25^0.5,tol=0.001,PX=c(12,13,14),setting="median")
- plot(ppt,ans_IV$WIE,type="l")
- points(ppt,ans_IV$WIE+1.96*ans_IV$WIE.v)
- points(ppt,ans_IV$WIE-1.96*ans_IV$WIE.v)
- abline(h=0,col=2)
+ans_med=mediation(ppt,data,int="FALSE",PX=c(12,13,14),setting="median")
+
+ plot(ppt,ans_med$omega.IE,col=2,type="l",ylim=c(-0.03,0.03))
+ points(ppt,ans_med$omega.IE+1.96*ans_med$omega.IE.v,col=2,type="l",ylim=c(-0.03,0.03))
+ points(ppt,ans_med$omega.IE-1.96*ans_med$omega.IE.v,col=2,type="l",ylim=c(-0.03,0.03))
+ points(ppt,ans_med$omega.DE-1.96*ans_med$omega.DE.v,col=1,type="l",ylim=c(-0.03,0.03))
+ points(ppt,ans_med$omega.DE+1.96*ans_med$omega.DE.v,col=1,type="l",ylim=c(-0.03,0.03))
+ points(ppt,ans_med$omega.DE,col=1,type="l",ylim=c(-0.03,0.03))
+ abline(h=0,col=3)
+
+
 }
