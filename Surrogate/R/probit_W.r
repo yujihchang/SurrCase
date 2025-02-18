@@ -35,7 +35,7 @@ apply(matrix(x), 1 ,prefun)
 
 
 
-tran.npmle=function(Y,D,X,r=-1,p.sigma=1,MU=0,TOL=0.05,weight,iter=50){
+tran.npmle_W=function(Y,D,X,r=-1,p.sigma=1,MU=0,TOL=0.05,weight,iter=50){
 #r=-1;p.sigma=p.sigma;liter=25;Bint=NULL;Rint=NULL
 #r=-1;p.sigma=1;liter=25;Bint=NULL;Rint=NULL
 #r=-1;p.sigma=SS^0.5;TOL=0.0001;Bint=NULL;Rint=NULL;Y=SCH$Ts;D=SCH$D;X=XX;weight=pi;speed=10;TOL=0.005
@@ -82,7 +82,7 @@ R=cumsum(dR)
 
 ###########################  transformation function G ##################################
 ##
-##¦pªG­n¼W¥[¤£¦Pªº transformations ¥i¦b³o¶ô²Î­×§ï¡C
+##å¦‚æœè¦å¢åŠ ä¸åŒçš„ transformations å¯åœ¨é€™å¡Šçµ±ä¿®æ”¹ã€‚
 ##
 #--------------------------------------------------------------------------------------- 
 # LA is cumulative based-line
