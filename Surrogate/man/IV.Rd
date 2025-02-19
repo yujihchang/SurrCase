@@ -17,7 +17,7 @@ IV(ppt, data, m0=0, m1=1, PX=NULL, tol=0.005, SS=1, mu=0, bin=0.5, setting=NULL,
 \item{level}{When "setting" is set to "level", specify a vector of the same length as the covariates}  
 }
 \description{
-Estimating the direct and indirect of the frailty model
+Surrogate Marker Assessment Using Mediation and Instrumental Variable Analyses in a Case-cohort Design (Annals of Applied Statistics, 2023).
 }
 \examples{
 data(expdata)
