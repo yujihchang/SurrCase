@@ -21,7 +21,7 @@ Estimating the direct and indirect of the frailty model
 }
 \examples{
 data(expdata)
-data=expdata
+
 ee=runif(30000,0,0.5);data[,1]=data[,1]+ee# separating the ties
 colnames(data)[1:5] = c("Ts","D","xi","Z","M")
 ppt=seq(0,max(data$Ts[data$D==1]),by=0.01) 
