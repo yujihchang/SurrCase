@@ -3,18 +3,16 @@
 \alias{mediation}
 \title{mediation Analysis Using the Transformation Probit Model in Case-Cohort Studie}
 \usage{
-IV(ppt, data, m0=0, m1=1, PX=NULL, tol=0.005, SS=1, mu=0, bin=0.5, setting=NULL, level=NULL)
+mediation(ppt,data,int="TRUE",PX=NULL,tol=0.005,setting,level=lv)
 }
 \arguments{
-\item{data}{data.frame(X1,X2,D,Z)}
-
-\item{int_theta}{initial value of theta for iteration, nonnegative values vector of length 2}
-
-\item{tol}{maximum tolerance of change during the iteration}
-
-\item{step}{maximum  number of the iteration}
-
-\item{interpolation}{time can be vector or scalar}
+\item{data}{A data frame containing Ts, D, xi, Z, and M, with the remaining columns representing covariates}  
+\item{PX}{A vector specifying the selected covariate columns to be included in the analysis (columns must be after the 5th column)}  
+\item{tol}{Convergence tolerance for the iterative algorithm}  
+\item{ppt}{A vector of time points of interest for the x-axis}  
+\item{int}{TRUE indicates that the interaction between mediation and exposure is considered}  
+\item{steting}{Optional: "median", "mean", or "level"}  
+\item{level}{When "setting" is set to "level", specify a vector of the same length as the covariates}  
 }
 \description{
 Estimating the direct and indirect of the frailty model
