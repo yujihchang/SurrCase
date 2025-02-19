@@ -15,7 +15,7 @@ mediation(ppt,data,int="TRUE",PX=NULL,tol=0.005,setting,level=lv)
 \item{level}{When "setting" is set to "level", specify a vector of the same length as the covariates}  
 }
 \description{
-Estimating the direct and indirect of the frailty model
+Surrogate Marker Assessment Using Mediation and Instrumental Variable Analyses in a Case-cohort Design (Annals of Applied Statistics, 2023).
 }
 \examples{
 data(expdata)
